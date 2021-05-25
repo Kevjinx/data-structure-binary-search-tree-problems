@@ -8,18 +8,53 @@ class TreeNode {
 
 class BST {
     // Initialize an empty binary search tree
+    
     constructor() {
-        // Your code here
+        this.root = null
+        
     }
 
     // Insert a node into the binary search tree
-    insert(val, currentNode=this.root) {
-        // Your code here
+    insert(val, currentNode = this.root, stop = false) {
+        if (!this.root) {
+            this.root = new TreeNode(val)
+            return true
+        }
+       // if (stop) return true
+
+        if (val < currentNode.val) {
+            if (!currentNode.left) {
+                currentNode.left = new TreeNode(val)
+                
+            } else {
+                this.insert(val, currentNode.left, stop)
+            }
+        }else {
+             if (!currentNode.right) {
+                currentNode.right = new TreeNode(val)
+                
+            } else {
+                this.insert(val, currentNode.right, stop)
+            }
+        }
+        
     }
 
     // Perform a recursive search through the binary search tree
-    searchRecur(val, currentNode=this.root) {
-        // Your code here
+    searchRecur(val, currentNode = this.root) {
+        if (!currentNode) return false
+
+        if (val === currentNode.val) return true
+        let searchResult1 = false
+        let searchResult2 = false
+        if (val < currentNode.val) {
+            searchResult1 = this.searchRecur(val, currentNode.left)
+            
+        } else if (val > currentNode.val) {
+            
+            searchResult2 = this.searchRecur(val, currentNode.right)
+        }
+        return (searchResult1 || searchResult2 || false)
     }
 
     // Perform an iterative search through the binary search tree
