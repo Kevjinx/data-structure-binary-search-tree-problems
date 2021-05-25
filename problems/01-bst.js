@@ -15,26 +15,26 @@ class BST {
     }
 
     // Insert a node into the binary search tree
-    insert(val, currentNode = this.root, stop = false) {
+    insert(val, currentNode = this.root,) {
         if (!this.root) {
             this.root = new TreeNode(val)
             return true
         }
-       // if (stop) return true
+
 
         if (val < currentNode.val) {
             if (!currentNode.left) {
                 currentNode.left = new TreeNode(val)
                 
             } else {
-                this.insert(val, currentNode.left, stop)
+                this.insert(val, currentNode.left,)
             }
         }else {
              if (!currentNode.right) {
                 currentNode.right = new TreeNode(val)
                 
             } else {
-                this.insert(val, currentNode.right, stop)
+                this.insert(val, currentNode.right,)
             }
         }
         
@@ -59,8 +59,42 @@ class BST {
 
     // Perform an iterative search through the binary search tree
     searchIter(val) {
-        // Your code here
+        if (!this.root) return false
+
+        let traversingRoot = this.root
+       
+        while (traversingRoot) {
+            if (val === traversingRoot.val) return true
+            if (val < traversingRoot.val) {
+             
+            traversingRoot = traversingRoot.left
+            } else {
+            traversingRoot = traversingRoot.right
+            }
+        }
+        
+        return false
     }
+
+    //searchIter(val) {
+    //    if (!this.root) return false
+//
+    //    let traversingRoot = this.root
+    //   
+    //    while (traversingRoot) {
+    //        
+    //        if (val < traversingRoot.val) {
+    //         
+    //        traversingRoot = traversingRoot.left
+    //        } else if(val > traversingRoot.val){
+    //        traversingRoot = traversingRoot.right
+    //        } else {
+    //            return true
+    //        }
+    //    }
+    //   
+    //    return false
+    //}
 }
 
 module.exports = {
